@@ -1,0 +1,52 @@
+<center>
+<h1>Eat a Burger!</h1><br>
+<img src = "https://previews.123rf.com/images/thodoristibilis/thodoristibilis1402/thodoristibilis140200003/26081492-Cartoon-cheese-burger-making-a-thumbs-up-gesture-wearing-a-crown-and-sticking-out-tongue-Stock-Vector.jpg">
+</center>
+
+<div class ="col-md-6">
+<h2>Burgers that are not devoured!</h2>
+<ul>
+  {{#each burgers}}
+    {{#unless this.devoured}}
+      <li>
+        {{this.burger_name}}
+        <form action="/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="devoured" value="true">
+          <button type="submit">Devour!</button>
+        </form>
+      </li>
+    {{/unless}}
+  {{/each}}
+</ul>
+</div>
+<div class ="col-md-6">
+<h2>Burgers that are devoured!</h2>
+<ul>
+  {{#each burgers}}
+    {{#if this.devoured}}
+      <li>
+        {{this.burger_name}}
+        <form action="/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="devoured" value="false">
+          <button type="submit"> Undevour!</button>
+        </form>
+      </li>
+    {{/if}}
+  {{/each}}
+</ul>
+</div><center>
+<div class = "row">
+<h2>Add a Burger</h2>
+<form class="create-update-form" action="/" method="POST">
+  <div class="form-group">
+    <label for="ca">Burger Name:</label>
+    <input type="text" id="ca" name="name">
+  </div>
+  <div class="form-group">
+    <label for="slee">Devoured?</label><br>
+    <input type="radio" name="devoured" value="1" checked> Not devoured!<br>
+    <input type="radio" name="devoured" value="0"> Devoured
+  </div>
+  <button type="submit">Add Burger</button>
+</form>
+</div></center>
